@@ -12,7 +12,7 @@
 // ============= НАСТРОЙКИ =============
 
 // ---------- МАТРИЦА ---------
-#define CURRENT_LIMIT 10000   // лимит по току в миллиамперах, автоматически управляет яркостью
+#define CURRENT_LIMIT 20000   // лимит по току в миллиамперах, автоматически управляет яркостью
 #define WIDTH 16              // ширина матрицы
 #define HEIGHT 20             // высота матрицы
 #define COLOR_ORDER GRB       // порядок цветов на ленте. Если цвет отображается некорректно - меняйте. Начать можно с RGB
@@ -41,7 +41,6 @@
 
 // ------------------- ТИПЫ --------------------
 CRGB leds[NUM_LEDS];
-//GButton touch(BTN_PIN, LOW_PULL, NORM_OPEN);  //сенсорная кнопка
 GButton btnMode(BTN_PIN, HIGH_PULL, NORM_OPEN);  //механическая кнопка
 
 // ----------------- ПЕРЕМЕННЫЕ ------------------
@@ -56,10 +55,8 @@ unsigned long numHold_Timer = 0;
 
 void setup() {
   FastLED.addLeds<WS2812B, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS)/*.setCorrection( TypicalLEDStrip )*/;
-  //FastLED.setBrightness(brightness);
   FastLED.setMaxPowerInVoltsAndMilliamps(5, CURRENT_LIMIT);
   FastLED.clear();
-  //FastLED.show();
   Serial.begin(115200);
   if (EEPROM.read(0) == 2) currentMode = EEPROM.read(1);
   attachInterrupt(digitalPinToInterrupt(BTN_PIN), btnInt, CHANGE);
