@@ -11,8 +11,6 @@ void effectsTick() {
         case 4: rainbowStripeNoise(); break;
         case 5: cloudNoise(); break;
         case 6: lavaNoise(); break;
-        //case 7: plasmaNoise(); break;
-        //case 8: oceanNoise(); break;
       }
       
       CHSV cl; byte ind, xc;
